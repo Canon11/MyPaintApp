@@ -5,18 +5,18 @@ public class SelectState extends State{
 	StateManager stateManager;
 	int dragX1,dragX2,dragY1,dragY2,x1,y1;
 	MyDrawing selectRectangle;
-	
+
 	public SelectState(StateManager stateManager) {
 		this.stateManager = stateManager;
 	}
-	
+
 	public void mouseDown(int x, int y) {
 		if (stateManager.move == stateManager.PASTE)
 			stateManager.canvas.mediator.paste(x,y);
 		else {
 			//移動ボタンが押されていない時
 			if (!stateManager.moveLocation) {
-				stateManager.canvas.mediator.selectedDrawings.clear();
+				stateManager.canvas.mediator.nullSelect();
 				selectRectangle = new MyRectangle(x,y,0,0);
 				stateManager.addDrawing(selectRectangle);
 				selectRectangle.setLineColor(Color.yellow);
@@ -27,10 +27,10 @@ public class SelectState extends State{
 					d.dragX1 = x;
 					d.dragY1 = y;
 				}
-			}	
+			}
 		}
 	}
-	
+
 	public void mouseUp(int x, int y) {
 		if (stateManager.move == stateManager.PASTE) {
 		} else if (stateManager.moveLocation) {
@@ -39,13 +39,14 @@ public class SelectState extends State{
 			stateManager.removeDrawing(selectRectangle);
 			for(MyDrawing d : stateManager.canvas.mediator.drawings) {
 				if(selectRectangle.contains(d.getX(), d.getY(),d.getW(),d.getH())) {
+					d.setSelected(true);
 					stateManager.canvas.mediator.selectedDrawings.add(d);
 				}
 			}
 			stateManager.canvas.repaint();
 		}
 	}
-	
+
 	public void mouseDrag(int x, int y) {
 		if(stateManager.move == stateManager.PASTE) {}
 		else if(stateManager.move == stateManager.CANCEL) {
@@ -66,6 +67,6 @@ public class SelectState extends State{
 		}
 		stateManager.canvas.repaint();
 	}
-	
+
 	public void mouseMove(int x, int y) {}
 }

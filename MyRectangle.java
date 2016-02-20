@@ -4,24 +4,24 @@ import java.awt.geom.AffineTransform;
 
 public class MyRectangle extends MyDrawing
 {
-	
+
 	public MyRectangle (int xpt, int ypt) {
 		super(xpt, ypt);
 	}
- 
+
 	public MyRectangle (int xpt, int ypt, int wpt, int hpt) {
  		super(xpt, ypt, wpt, hpt);
 	}
-	
+
 	public void draw( Graphics g ) {
+		shape = RECTANGLE;
 	 	super.draw(g);
-	 	shape = RECTANGLE;
-	 	
+
         int x = getX();
         int y = getY();
         int w = getW();
         int h = getH();
-        
+
         if ( w < 0 ) {
             x += w;
             w *= -1;
@@ -30,7 +30,7 @@ public class MyRectangle extends MyDrawing
             y += h;
             h *= -1;
         }
-        
+
         Graphics2D g2 = (Graphics2D) g;
         AffineTransform at = new AffineTransform();
         at.setToRotation(Math.PI / 180 * theta, getX() + getW() / 2, getY() + getH() / 2);

@@ -40,29 +40,28 @@ public class MyDrawing implements Cloneable {
 	}
 
 	public void draw(Graphics g) {
-		if (isSelected) {
-			int xx,yy,ww,hh;
-			if(shape == STAR) {
-				xx = x-2*w/2;
-				yy = y - 2*h/2;
-				ww = w*2;
-				hh = h*2;
-			} else {
-				xx = x;
-				yy = y;
-				ww = w;
-				hh = h;
-			}
-			g.setColor(Color.black);
-			g.fillRect(xx+ww/2-SIZE, yy-SIZE, SIZE*2, SIZE*2);
-			g.fillRect(xx-SIZE, yy+hh/2-SIZE, SIZE*2, SIZE*2);
-			g.fillRect(xx+ww/2-SIZE, yy+hh-SIZE, SIZE*2, SIZE*2);
-			g.fillRect(xx+ww-SIZE, yy+hh/2-SIZE, SIZE*2, SIZE*2);
-			g.fillRect(xx-SIZE, yy-SIZE, SIZE*2, SIZE*2);
-			g.fillRect(xx+ww-SIZE, yy-SIZE, SIZE*2, SIZE*2);
-			g.fillRect(xx-SIZE, yy+hh-SIZE, SIZE*2, SIZE*2);
-			g.fillRect(xx+ww-SIZE, yy+hh-SIZE, SIZE*2, SIZE*2);
+		int xx,yy,ww,hh;
+		if(shape == STAR) {
+			xx = x-2*w/2;
+			yy = y - 2*h/2;
+			ww = w*2;
+			hh = h*2;
+		} else {
+			xx = x;
+			yy = y;
+			ww = w;
+			hh = h;
 		}
+		if (isSelected) g.setColor(Color.black);
+		else g.setColor(Color.white);
+		g.fillRect(xx+ww/2-SIZE, yy-SIZE, SIZE*2, SIZE*2);
+		g.fillRect(xx-SIZE, yy+hh/2-SIZE, SIZE*2, SIZE*2);
+		g.fillRect(xx+ww/2-SIZE, yy+hh-SIZE, SIZE*2, SIZE*2);
+		g.fillRect(xx+ww-SIZE, yy+hh/2-SIZE, SIZE*2, SIZE*2);
+		g.fillRect(xx-SIZE, yy-SIZE, SIZE*2, SIZE*2);
+		g.fillRect(xx+ww-SIZE, yy-SIZE, SIZE*2, SIZE*2);
+		g.fillRect(xx-SIZE, yy+hh-SIZE, SIZE*2, SIZE*2);
+		g.fillRect(xx+ww-SIZE, yy+hh-SIZE, SIZE*2, SIZE*2);
 	}
 
 	public boolean contains(int x, int y, int w, int h) {

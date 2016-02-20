@@ -107,6 +107,7 @@ public class Mediator {
 				clone.add(d.clone());
 				cloned = clone.lastElement();
 				cloned.setLocation(cloned.x - centerX + x,cloned.y - centerY + y);
+				cloned.setSelected(false);
 				addDrawing(clone.lastElement());
 			}
 			repaint();
@@ -142,7 +143,7 @@ public class Mediator {
 		for(MyDrawing d : selectedDrawings)
 			d.setLineColor(color);
 	}
-	
+
 	public void selectFillColor(Color color) {
 		for(MyDrawing d : selectedDrawings)
 			d.setFillColor(color);
