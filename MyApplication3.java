@@ -8,14 +8,14 @@ import java.awt.BorderLayout;
 public class MyApplication3 extends JFrame implements ActionListener , ChangeListener {
     StateManager stateManager;
     MyCanvas canvas;
-    
-    private JButton deleteButton = new JButton("Delete"), 
+
+    private JButton deleteButton = new JButton("Delete"),
 	shadowButton = new JButton("Shadow"),
 	sortupButton = new JButton("SortUp"),
 	sorttallButton = new JButton("SortTall"),
 	sortvertButton = new JButton("SortVert"),
 	movelocationButton = new JButton("Move");
-	
+
     private JMenuBar menuBar;
     private JMenu colorMenu,moveMenu, fillMenu, widthMenu;
     private JMenuItem redItem, blueItem, greenItem, otherLine,
@@ -24,21 +24,21 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	thin, normal, bold;
 
     private JSlider alphaSlider = new JSlider(0,255);
-    
+
     public MyApplication3() {
 	super("My Paint Application3");
-	
+
 	//キャンバスをセット
 	canvas = new MyCanvas();
 	canvas.setBackground(Color.white);
-	
+
 	JPanel jp = new JPanel();
 	jp.setLayout(new FlowLayout());
-	
+
 	//stateManagerをセット
 	stateManager = new StateManager(canvas);
 	stateManager.setState(new RectState(stateManager));//初期状態はRectangle
-	
+
 	//ボタンをセット
 	RectButton rectButton = new RectButton(stateManager);
 	jp.add(rectButton);
@@ -52,7 +52,7 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	jp.add(selectButton);
 	AnimButton animButton = new AnimButton(stateManager);
 	jp.add(animButton);
-	jp.add(deleteButton);	
+	jp.add(deleteButton);
 	jp.add(shadowButton);
 	jp.add(sortupButton);
 	jp.add(sorttallButton);
@@ -70,7 +70,7 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	getContentPane().setLayout(new BorderLayout());
 	getContentPane().add(jp,BorderLayout.NORTH);
 	getContentPane().add(canvas,BorderLayout.CENTER);
-	
+
 	//colorMenuをセット
 	menuBar = new JMenuBar();
 	setJMenuBar(menuBar);
@@ -88,7 +88,7 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	greenItem.addActionListener(this);
 	otherLine.addActionListener(this);
 	menuBar.add(colorMenu);
-		
+
 	//copy,cut,pastのMenu
 	moveMenu = new JMenu("Move");
 	copyItem = new JMenuItem("Copy");
@@ -100,85 +100,85 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	moveMenu.add(pasteItem);
 	moveMenu.add(cancelItem);
 	copyItem.addActionListener(this);
-        cutItem.addActionListener(this);
-        pasteItem.addActionListener(this);
-        cancelItem.addActionListener(this);
-        menuBar.add(moveMenu);
-	
-        //fillのMenu
-        fillMenu = new JMenu("fColor");
-        fillRed = new JMenuItem("Red");
-        fillBlue = new JMenuItem("Blue");
-        fillGreen = new JMenuItem("Green");
-        fillWhite = new JMenuItem("None");
-        otherFill = new JMenuItem("Other");
-        spoitFill = new JMenuItem("Spoit");
-        fillMenu.add(fillRed);
-        fillMenu.add(fillBlue);
-        fillMenu.add(fillGreen);
-        fillMenu.add(fillWhite);
-        fillMenu.add(otherFill);
-        fillMenu.add(spoitFill);
-        fillRed.addActionListener(this);
-        fillBlue.addActionListener(this);
-        fillGreen.addActionListener(this);
-        fillWhite.addActionListener(this);
-        otherFill.addActionListener(this);
-        spoitFill.addActionListener(this);
-        menuBar.add(fillMenu);
-        
-        //lineWidthのMenu
-        widthMenu = new JMenu("Width");
-        thin = new JMenuItem("Thin");
-        normal = new JMenuItem("Normal");
-        bold = new JMenuItem("Bold");
-        widthMenu.add(thin);
-        widthMenu.add(normal);
-        widthMenu.add(bold);
-        thin.addActionListener(this);
-        normal.addActionListener(this);
-        bold.addActionListener(this);
-        menuBar.add(widthMenu);
-		
-        
+    cutItem.addActionListener(this);
+    pasteItem.addActionListener(this);
+    cancelItem.addActionListener(this);
+    menuBar.add(moveMenu);
+
+    //fillのMenu
+    fillMenu = new JMenu("fColor");
+    fillRed = new JMenuItem("Red");
+    fillBlue = new JMenuItem("Blue");
+    fillGreen = new JMenuItem("Green");
+    fillWhite = new JMenuItem("None");
+    otherFill = new JMenuItem("Other");
+    spoitFill = new JMenuItem("Spoit");
+    fillMenu.add(fillRed);
+    fillMenu.add(fillBlue);
+    fillMenu.add(fillGreen);
+    fillMenu.add(fillWhite);
+    fillMenu.add(otherFill);
+    fillMenu.add(spoitFill);
+    fillRed.addActionListener(this);
+    fillBlue.addActionListener(this);
+    fillGreen.addActionListener(this);
+    fillWhite.addActionListener(this);
+    otherFill.addActionListener(this);
+    spoitFill.addActionListener(this);
+    menuBar.add(fillMenu);
+
+    //lineWidthのMenu
+    widthMenu = new JMenu("Width");
+    thin = new JMenuItem("Thin");
+    normal = new JMenuItem("Normal");
+    bold = new JMenuItem("Bold");
+    widthMenu.add(thin);
+    widthMenu.add(normal);
+    widthMenu.add(bold);
+    thin.addActionListener(this);
+    normal.addActionListener(this);
+    bold.addActionListener(this);
+    menuBar.add(widthMenu);
+
+
 	//マウスクリックのリスナー
 	canvas.addMouseListener(new MouseAdapter() {
 		public void mousePressed(MouseEvent e) {
 		    stateManager.mouseDown(e.getX(), e.getY());
 		}
 	    });
-	
+
 	//マウスドラッグのリスナー
 	canvas.addMouseMotionListener(new MouseMotionAdapter() {
 		public void mouseDragged(MouseEvent e) {
 		    stateManager.mouseDrag(e.getX(), e.getY());
 		}
 	    });
-	
+
 	canvas.addMouseListener(new MouseAdapter() {
 		public void mouseReleased(MouseEvent e) {
 		    stateManager.mouseUp(e.getX(), e.getY());
 		}
 	    });
-	
+
 	canvas.addMouseMotionListener(new MouseMotionAdapter() {
 		public void mouseMoved(MouseEvent e) {
 		    stateManager.mouseMove(e.getX(), e.getY());
 		}
 	    });
-	
+
 	this.addWindowListener(new WindowAdapter() {
 		public void windowClosing(WindowEvent e) {
 		    System.exit(0);
 		}
 	    });
     }
-    
+
     //アクションリスナー
     public void actionPerformed(ActionEvent e) {
 	//ライン色変更
 	if(e.getSource() == redItem) canvas.mediator.selectLineColor(Color.red);
-	else if (e.getSource() == blueItem) canvas.mediator.selectLineColor(Color.blue);
+	else if (e.getSource() == blueItem)        canvas.mediator.selectLineColor(Color.blue);
 	else if (e.getSource() == greenItem) canvas.mediator.selectLineColor(Color.green);
 	else if (e.getSource() == otherLine) {
 	    Color lineColor = JColorChooser.showDialog(this,"LineColor",Color.white);
@@ -192,14 +192,14 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	    stateManager.move = stateManager.CUT;
 	    stateManager.moveSelect();
 	    canvas.mediator.repaint();
-	} else if (e.getSource() == pasteItem) 
+	} else if (e.getSource() == pasteItem)
 	    stateManager.move = stateManager.PASTE;
 	else if (e.getSource() == cancelItem)
 	    stateManager.move = stateManager.CANCEL;
 	//塗り色
-	else if (e.getSource() == fillRed) 
+	else if (e.getSource() == fillRed)
 	    canvas.mediator.selectFillColor(Color.RED);
-	else if (e.getSource() == fillBlue) 
+	else if (e.getSource() == fillBlue)
 	    canvas.mediator.selectFillColor(Color.BLUE);
 	else if (e.getSource() == fillGreen)
 	    canvas.mediator.selectFillColor(Color.GREEN);
@@ -211,10 +211,9 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	}
 	else if (e.getSource() == spoitFill) {
 	    try {
-		stateManager.setState(new SpoitState(stateManager));
+            stateManager.setState(new SpoitState(stateManager));
 	    } catch (Exception e1) {
-		// TODO 自動生成された catch ブロック
-		e1.printStackTrace();
+            e1.printStackTrace();
 	    }
 	}
 	//太さ
@@ -226,26 +225,26 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	    canvas.mediator.selectLineWidth(3);
 	canvas.repaint();
     }
-    
+
     public Dimension getPreferredSize() {
 	return new Dimension(1400,800);
     }
-    
-    
+
+
     //deleteのリスナークラス
     class deleteListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	    canvas.mediator.delete();
 	}
     }
-    
+
     //shadowのリスナークラス
     class shadowListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	    canvas.mediator.changeShadow();
 	}
     }
-    
+
     class sortupListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	    int y;
@@ -256,7 +255,7 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	    canvas.repaint();
 	}
     }
-    
+
     class sorttallListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	    int y0,h0;
@@ -281,7 +280,7 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	    canvas.repaint();
 	}
     }
-    
+
     class sortvertListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	    int xc = 600;
@@ -296,7 +295,7 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	    canvas.repaint();
 	}
     }
-    
+
     class alphaChangeListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	    for (MyDrawing d : canvas.mediator.selectedDrawings) {
@@ -312,7 +311,7 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	    canvas.repaint();
 	}
     }
-    
+
     public void stateChanged(ChangeEvent e) {
 	for (MyDrawing d : canvas.mediator.selectedDrawings) {
 	    int fillRed = d.getFillColor().getRed();
@@ -322,14 +321,14 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	}
 	canvas.repaint();
     }
-    
-    
+
+
     class movelocationListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 	    stateManager.moveLocation = true;
 	}
     }
-    
+
     public static void main(String[] args) {
 	MyApplication3 app = new MyApplication3();
 	app.pack();
