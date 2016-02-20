@@ -141,22 +141,16 @@ public class MyDrawing implements Cloneable {
 	}
 	
 	public MyDrawing clone() {
-	//MyDrawing d;
-	//if(shape == RECTANGLE) d = (MyRectangle)clone();
-	//else d = (MyOval)clone();
-	//return d;
-		if(shape == RECTANGLE) newClone = new MyRectangle(x,y,w,h);
-		else if(shape == OVAL) newClone = new MyOval(x,y,w,h);
-		else if(shape == HUM) newClone = new MyHum(x,y,w,h);
-		else newClone = new MyStar(x,y,w,h);
-		newClone.shape = this.shape;
-		newClone.setLineColor(lineColor);
-		newClone.setFillColor(fillColor);
-		newClone.setLineWidth(lineWidth);
-		newClone.shadow = this.shadow;
-		newClone.theta = this.theta;
-		newClone.colorAlpha = this.colorAlpha;
-		return newClone;
+	    MyDrawing d;
+	    try{
+		if(shape == RECTANGLE) d = (MyRectangle) super.clone();
+		else if(shape == HUM) d = (MyHum) super.clone();
+		else if(shape == OVAL) d = (MyOval) super.clone();
+		else d = (MyStar) super.clone();
+		return d;
+	    } catch (CloneNotSupportedException e) {
+		return null;
+	    }
 	}
 	
 	public double getTheta() {
