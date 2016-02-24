@@ -10,7 +10,7 @@ public class MyDrawing implements Cloneable {
 	Rectangle region;
 	final int SIZE = 3;
 	int shape;
-	final int RECTANGLE = 1, OVAL = 2, STAR = 3, HUM = 4;
+	final int RECTANGLE = 1, OVAL = 2, STAR = 3;
 	boolean shadow = false;
 	int dragX1,dragY1,dragX2,dragY2;
 	double theta = 0;
@@ -142,7 +142,6 @@ public class MyDrawing implements Cloneable {
 	    MyDrawing d;
 	    try{
 		if(shape == RECTANGLE) d = (MyRectangle) super.clone();
-		else if(shape == HUM) d = (MyHum) super.clone();
 		else if(shape == OVAL) d = (MyOval) super.clone();
 		else d = (MyStar) super.clone();
 		return d;

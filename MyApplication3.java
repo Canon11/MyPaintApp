@@ -46,8 +46,6 @@ public class MyApplication3 extends JFrame implements ActionListener , ChangeLis
 	jp.add(ovalButton);
 	StarButton starButton = new StarButton(stateManager);
 	jp.add(starButton);
-	HumButton humButton = new HumButton(stateManager);
-	jp.add(humButton);
 	SelectButton selectButton = new SelectButton(stateManager);
 	jp.add(selectButton);
 	AnimButton animButton = new AnimButton(stateManager);
