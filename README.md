@@ -6,6 +6,10 @@ GUIウインドウ上で図形をペイントし、選択した図形に何か�
 描いた図形を並べたり、アニメーションさせたりできる。
 main関数はMyApplication3.javaに記述。
 
+## Demo
+![circleanimationmuvie](https://github.com/Canon11/MyPaintApp/blob/master/gif/MyPaintDemo.gif)
+
+
 ## Requirement
 - java 1.7
 
