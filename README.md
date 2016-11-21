@@ -4,9 +4,9 @@
 ## Description
 GUIウインドウ上で図形をペイントし、選択した図形に何かしらの効果を加えるアプリケーション。2015年前期の実験で作成。
 描いた図形を並べたり、アニメーションさせたりできる。
-main関数はMyApplication3.javaに記述。
 
-## Demo
+***DEMO:***
+
 ![circleanimationmuvie](https://github.com/Canon11/MyPaintApp/blob/master/gif/MyPaintDemo.gif)
 
 
@@ -15,15 +15,15 @@ main関数はMyApplication3.javaに記述。
 
 ## Usage
 ```
-cd MyPaintApp
-javac *.java
-java MyApplication3
+$ cd MyPaintApp
+$ javac *.java
+$ java MyApplication3
 ```
 図形を描き、selectボタンで図形を選択。選択した図形をドラッグしたり、UIボタンを押すことで効果を加えられるようになる。
 
 ## Install
 ```
-git clone https://github.com/Canon11/MyPaintApp.git
+$ git clone https://github.com/Canon11/MyPaintApp.git
 ```
 
 ## Anything Else
