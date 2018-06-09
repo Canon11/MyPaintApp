@@ -1,4 +1,4 @@
-#MyPaintApp
+# MyPaintApp
 実験で作った図形ペイントアプリ
 
 ## Description
